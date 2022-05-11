@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  vault:
+    image: vault
+    build: .
+    ports:
+      - 5030:80
+    volumes:
+      - .:/usr/src/app
+    links:
+      - mongodb
+  mongodb:
+    image: mongo:5.0.6
+    ports:
+      - 27017:27017
+    volumes:
+      - data:/data/vault/db
+volumes:
+  data:
